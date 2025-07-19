@@ -1,157 +1,41 @@
+<!-- index.html for Cosmo Spa Bot with custom CSS and light/dark mode -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cosmo Spa Bot</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg-light: #f9f9f9;
-      --bg-dark: #1e1e1e;
-      --text-light: #000000;
-      --text-dark: #ffffff;
-      --accent: #f78fb3;
-    }
+  <title>Cosmo Spa ChatBot</title>
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-light);
-      color: var(--text-light);
-      margin: 0;
-      padding: 0;
-      transition: background 0.3s, color 0.3s;
-    }
+  <!-- ✅ Custom ChatGPT-style CSS hosted on GitHub (RAW link) -->
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/XenophormicXiphoidCat/Css-Style-for-chatbot-embed/main/n8n-chatgpt-style.css">
 
-    .container {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    }
+  <!-- n8n Chat Widget Core JS -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
-    .header {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .chat-box {
-      max-height: 400px;
-      overflow-y: auto;
-      margin-bottom: 10px;
-    }
-
-    .message {
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      max-width: 80%;
-    }
-
-    .user {
-      background: #d1f0e1;
-      align-self: flex-end;
-      text-align: right;
-      margin-left: auto;
-    }
-
-    .bot {
-      background: #f1f1f1;
-      align-self: flex-start;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    input[type="text"] {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    button {
-      padding: 10px 15px;
-      background: var(--accent);
-      border: none;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .dark-mode body {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    .dark-mode .container {
-      background: #2c2c2c;
-    }
-
-    .dark-mode .bot {
-      background: #333;
-    }
-
-    .dark-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-    }
-  </style>
+    createChat({
+      webhookUrl: 'https://xxc.app.n8n.cloud/webhook/cc9181f1-6d2f-4094-a059-b1925e02d877/chat',
+      initialMessages: [
+        'Let’s begin your transformation.',
+        'Welcome to Cosmo Contour & Spa 👩‍🌺🔧',
+        'How can I help you with your wellness journey today?'
+      ],
+      i18n: {
+        en: {
+          title: 'Cosmo Spa Bot 🌸',
+          subtitle: "Let's chat about beauty, wellness, and sculpting!",
+          footer: '',
+          getStarted: 'New Conversation',
+          inputPlaceholder: 'Ask anything about our services…',
+        }
+      },
+      showWelcomeScreen: true,
+      metadata: {},
+      mode: 'window',
+      loadPreviousSession: true,
+    });
+  </script>
 </head>
 <body>
-  <div class="dark-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</div>
-
-  <div class="container">
-    <div class="header">Cosmo Spa Bot 🌸</div>
-    <div class="chat-box" id="chat-box"></div>
-    <div class="input-row">
-      <input type="text" id="user-input" placeholder="Ask anything about our services...">
-      <button onclick="sendMessage()">➤</button>
-    </div>
-  </div>
-
-  <script>
-    const webhookUrl = "https://xxc.app.n8n.cloud/webhook/cc9181f1-6d2f-4094-a059-b1925e02d877/chat";
-
-    const chatBox = document.getElementById("chat-box");
-
-    function appendMessage(text, sender) {
-      const div = document.createElement("div");
-      div.className = `message ${sender}`;
-      div.innerText = text;
-      chatBox.appendChild(div);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    async function sendMessage() {
-      const input = document.getElementById("user-input");
-      const text = input.value.trim();
-      if (!text) return;
-
-      appendMessage(text, "user");
-      input.value = "";
-
-      const res = await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text })
-      });
-
-      const data = await res.json();
-      const reply = data.text || "Sorry, something went wrong.";
-      appendMessage(reply, "bot");
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-  </script>
 </body>
 </html>
