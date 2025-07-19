@@ -1,41 +1,23 @@
-<!-- index.html for Cosmo Spa Bot with custom CSS and light/dark mode -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cosmo Spa ChatBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cosmo Spa Bot 💮</title>
 
-  <!-- ✅ Custom ChatGPT-style CSS hosted on GitHub (RAW link) -->
-  <link rel="stylesheet" href="https://raw.githubusercontent.com/XenophormicXiphoidCat/Css-Style-for-chatbot-embed/main/n8n-chatgpt-style.css">
+  <!-- ✅ ChatGPT-Style CSS from GitHub via jsDelivr -->
+  <link href="https://cdn.jsdelivr.net/gh/XenophormicXiphoidCat/Css-Style-for-chatbot-embed@main/n8n-chatgpt-style.css" rel="stylesheet" />
 
-  <!-- n8n Chat Widget Core JS -->
-  <script type="module">
-    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-    createChat({
-      webhookUrl: 'https://xxc.app.n8n.cloud/webhook/cc9181f1-6d2f-4094-a059-b1925e02d877/chat',
-      initialMessages: [
-        'Let’s begin your transformation.',
-        'Welcome to Cosmo Contour & Spa 👩‍🌺🔧',
-        'How can I help you with your wellness journey today?'
-      ],
-      i18n: {
-        en: {
-          title: 'Cosmo Spa Bot 🌸',
-          subtitle: "Let's chat about beauty, wellness, and sculpting!",
-          footer: '',
-          getStarted: 'New Conversation',
-          inputPlaceholder: 'Ask anything about our services…',
-        }
-      },
-      showWelcomeScreen: true,
-      metadata: {},
-      mode: 'window',
-      loadPreviousSession: true,
-    });
-  </script>
+  <!-- ✅ n8n Chatbot Widget -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js"></script>
 </head>
+
 <body>
+  <!-- Chat Container -->
+  <n8n-chat
+    chat-id="https://xxc.app.n8n.cloud/webhook/cc9181f1-6d2f-4094-a059-b1925e02d877/chat"
+    style="--n8n-chatbot-theme: neutral;"
+    language-detection="true"
+  ></n8n-chat>
 </body>
 </html>
