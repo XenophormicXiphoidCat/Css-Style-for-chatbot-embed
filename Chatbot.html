@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmo Contour & Spa Chatbot</title>
+
+  <!-- ✅ Custom ChatGPT-style CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/XenophormicXiphoidCat/Css-Style-for-chatbot-embed@main/n8n-chatgpt-style.css" id="theme-style">
+
+  <!-- Optional custom styles -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color, #f5f5f5);
+      transition: background 0.3s ease;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 9999;
+      background: #eee;
+      color: #000;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .theme-toggle.dark {
+      background: #222;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Light/Dark Toggle Button -->
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+  <!-- ✅ n8n Chatbot -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl: 'https://xxc.app.n8n.cloud/webhook/cc9181f1-6d2f-4094-a059-b1925e02d877/chat',
+      defaultLanguage: 'en',
+      initialMessages: [
+        'Welcome to Cosmo Contour & Spa 💆‍♀️✨',
+        'How can I help you with your wellness journey today?'
+      ],
+      i18n: {
+        en: {
+          title: 'Cosmo Spa Bot 🌸',
+          subtitle: 'Let’s begin your transformation.',
+          inputPlaceholder: 'Ask anything about our services…',
+          getStarted: 'Start New Conversation',
+        }
+      }
+    });
+  </script>
+
+  <!-- ✅ Light/Dark Theme Toggle Logic -->
+  <script>
+    const themeBtn = document.querySelector('.theme-toggle');
+    const themeLink = document.getElementById('theme-style');
+
+    function toggleTheme() {
+      const isDark = themeBtn.classList.toggle('dark');
+      if (isDark) {
+        document.documentElement.style.setProperty('--bg-color', '#1e1e1e');
+        themeBtn.textContent = '☀️ Light Mode';
+      } else {
+        document.documentElement.style.setProperty('--bg-color', '#f5f5f5');
+        themeBtn.textContent = '🌙 Dark Mode';
+      }
+    }
+  </script>
+</body>
+</html>
